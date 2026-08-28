@@ -81,11 +81,11 @@ class AiClient
 
         $response = curl_exec($ch);
         $errno = curl_errno($ch);
+        $curlError = curl_error($ch);
         $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
 
         if ($errno || $response === false) {
-            Logger::error('AI Groq: erreur réseau');
+            Logger::error('AI Groq: erreur réseau (' . $errno . ') ' . $curlError);
             return ['ok' => false, 'error' => 'network'];
         }
 

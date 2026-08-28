@@ -43,7 +43,7 @@ function asset(string $path): string
 
 function e(?string $value): string
 {
-    return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
+    return htmlspecialchars($value ?? '', ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
 function old(string $key, mixed $default = ''): mixed
@@ -78,4 +78,16 @@ function csrf_field(): string
 function view_exists(string $view): bool
 {
     return is_file(dirname(__DIR__) . "/views/{$view}.php");
+}
+
+/**
+ * Remplace les jetons {{champ}} d'un gabarit par des valeurs utilisateur,
+ * en échappant le HTML et en préservant les retours à la ligne des textarea.
+ */
+function fill_template(string $template, array $data): string
+{
+    return preg_replace_callback('/\{\{(\w+)\}\}/', function ($matches) use ($data) {
+        $value = $data[$matches[1]] ?? '';
+        return nl2br(e((string) $value));
+    }, $template);
 }

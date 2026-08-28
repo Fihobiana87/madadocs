@@ -50,6 +50,7 @@
     const searchInput = document.querySelector('[data-doc-search]');
     if (searchInput) {
         const cards = Array.from(document.querySelectorAll('[data-doc-card]'));
+        const sections = Array.from(document.querySelectorAll('[data-doc-section]'));
         const emptyState = document.querySelector('[data-search-empty]');
         searchInput.addEventListener('input', () => {
             const term = searchInput.value.trim().toLowerCase();
@@ -59,6 +60,10 @@
                 const match = haystack.includes(term);
                 card.style.display = match ? '' : 'none';
                 if (match) visible += 1;
+            });
+            sections.forEach((section) => {
+                const hasVisible = section.querySelectorAll('[data-doc-card]:not([style*="display: none"])').length > 0;
+                section.style.display = hasVisible ? '' : 'none';
             });
             if (emptyState) emptyState.style.display = visible === 0 ? '' : 'none';
         });
@@ -112,13 +117,76 @@
             } catch (e) { /* brouillon corrompu, ignoré */ }
         };
 
+        // --- Facture / devis : lignes de produits dynamiques ---
+        const itemsBody = document.querySelector('[data-invoice-items]');
+        const renderInvoiceTable = () => {
+            if (!itemsBody || !preview) return;
+            const target = preview.querySelector('[data-invoice-table]');
+            if (!target) return;
+
+            const rows = Array.from(itemsBody.querySelectorAll('[data-item-row]'));
+            const tva = parseFloat(form.elements.namedItem('tva')?.value || '0') || 0;
+            let subtotal = 0;
+            let rowsHtml = '';
+
+            rows.forEach((row) => {
+                const desc = row.querySelector('[name="produit_description[]"]')?.value.trim();
+                const qty = parseFloat(row.querySelector('[name="produit_quantite[]"]')?.value || '0') || 0;
+                const price = parseFloat(row.querySelector('[name="produit_prix[]"]')?.value || '0') || 0;
+                if (!desc || qty <= 0) return;
+                const lineTotal = qty * price;
+                subtotal += lineTotal;
+                rowsHtml += `<tr><td>${desc.replace(/</g, '&lt;')}</td><td class="num">${qty}</td><td class="num">${price.toLocaleString('fr-FR')} Ar</td><td class="num">${lineTotal.toLocaleString('fr-FR')} Ar</td></tr>`;
+            });
+
+            const taxAmount = subtotal * (tva / 100);
+            const total = subtotal + taxAmount;
+
+            target.innerHTML = `
+                <table class="invoice-items"><thead><tr><th>Description</th><th class="num">Qté</th><th class="num">Prix unitaire</th><th class="num">Total</th></tr></thead>
+                <tbody>${rowsHtml || '<tr><td colspan="4" class="text-muted">Ajoutez au moins une ligne.</td></tr>'}</tbody></table>
+                <div class="invoice-totals">
+                    <div><span>Sous-total</span><span>${subtotal.toLocaleString('fr-FR')} Ar</span></div>
+                    <div><span>TVA (${tva}%)</span><span>${taxAmount.toLocaleString('fr-FR')} Ar</span></div>
+                    <div class="grand-total"><span>Total</span><span>${total.toLocaleString('fr-FR')} Ar</span></div>
+                </div>`;
+        };
+
+        if (itemsBody) {
+            const addRowBtn = document.querySelector('[data-add-item]');
+            const rowTemplate = () => `
+                <div class="field-group-inline" data-item-row style="grid-template-columns:2fr 1fr 1fr auto;align-items:end">
+                    <div class="field"><label>Description</label><input class="input" name="produit_description[]" type="text" placeholder="Prestation ou produit"></div>
+                    <div class="field"><label>Quantité</label><input class="input" name="produit_quantite[]" type="number" min="0" step="0.01" value="1"></div>
+                    <div class="field"><label>Prix unitaire (Ar)</label><input class="input" name="produit_prix[]" type="number" min="0" step="0.01"></div>
+                    <button type="button" class="btn btn-ghost btn-sm" data-remove-item aria-label="Supprimer la ligne">✕</button>
+                </div>`;
+
+            addRowBtn?.addEventListener('click', () => {
+                itemsBody.insertAdjacentHTML('beforeend', rowTemplate());
+            });
+
+            itemsBody.addEventListener('click', (event) => {
+                if (event.target.closest('[data-remove-item]')) {
+                    event.target.closest('[data-item-row]')?.remove();
+                    renderInvoiceTable();
+                }
+            });
+
+            if (itemsBody.children.length === 0) {
+                itemsBody.insertAdjacentHTML('beforeend', rowTemplate());
+            }
+        }
+
         loadDraft();
         renderPreview();
+        renderInvoiceTable();
         updateProgress();
 
         let saveTimer;
         form.addEventListener('input', () => {
             renderPreview();
+            renderInvoiceTable();
             updateProgress();
             clearTimeout(saveTimer);
             saveTimer = setTimeout(saveDraft, 400);
@@ -130,15 +198,15 @@
                 localStorage.removeItem(draftKey);
                 form.reset();
                 renderPreview();
+                renderInvoiceTable();
                 updateProgress();
             });
         }
     }
 
     // --- Assistant IA (aide à la rédaction) ---
-    const aiForm = document.querySelector('[data-ai-form]');
-    if (aiForm) {
-        const resultBox = document.querySelector('[data-ai-result]');
+    document.querySelectorAll('[data-ai-form]').forEach((aiForm) => {
+        const resultBox = document.querySelector(aiForm.getAttribute('data-ai-result-target') || '[data-ai-result]');
         const submitBtn = aiForm.querySelector('button[type="submit"]');
 
         aiForm.addEventListener('submit', async (event) => {
@@ -159,7 +227,18 @@
 
                 if (data.ok) {
                     if (resultBox) {
-                        resultBox.innerHTML = `<textarea class="input" rows="10" readonly>${data.text}</textarea>`;
+                        const safeText = String(data.text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                        resultBox.innerHTML = `<textarea class="input" rows="10" readonly>${safeText}</textarea>
+                            <button type="button" class="btn btn-secondary btn-sm mt-6">Copier le texte</button>`;
+                        const copyBtn = resultBox.querySelector('button');
+                        const textarea = resultBox.querySelector('textarea');
+                        copyBtn.addEventListener('click', async () => {
+                            try {
+                                await navigator.clipboard.writeText(textarea.value);
+                                copyBtn.textContent = 'Copié ✓';
+                                setTimeout(() => { copyBtn.textContent = 'Copier le texte'; }, 1600);
+                            } catch (e) { /* presse-papier indisponible */ }
+                        });
                     }
                 } else {
                     const messages = {
@@ -180,7 +259,7 @@
                 submitBtn.textContent = originalLabel;
             }
         });
-    }
+    });
 
     // --- Favoris (toggle sans rechargement) ---
     document.querySelectorAll('[data-favorite-toggle]').forEach((btn) => {

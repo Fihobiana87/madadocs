@@ -143,11 +143,20 @@ class ComposerStaticInitac2d307f4ed514763a8119f3523066bb
     );
 
     public static $classMap = array (
+        'App\\Controllers\\AiController' => __DIR__ . '/../..' . '/app/Controllers/AiController.php',
+        'App\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Controllers/AuthController.php',
+        'App\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/Controllers/CategoryController.php',
+        'App\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Controllers/DashboardController.php',
+        'App\\Controllers\\DocumentController' => __DIR__ . '/../..' . '/app/Controllers/DocumentController.php',
+        'App\\Controllers\\ErrorController' => __DIR__ . '/../..' . '/app/Controllers/ErrorController.php',
+        'App\\Controllers\\FavoriteController' => __DIR__ . '/../..' . '/app/Controllers/FavoriteController.php',
+        'App\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Controllers/HomeController.php',
         'App\\Core\\AiClient' => __DIR__ . '/../..' . '/app/Core/AiClient.php',
         'App\\Core\\Auth' => __DIR__ . '/../..' . '/app/Core/Auth.php',
         'App\\Core\\Controller' => __DIR__ . '/../..' . '/app/Core/Controller.php',
         'App\\Core\\Csrf' => __DIR__ . '/../..' . '/app/Core/Csrf.php',
         'App\\Core\\Database' => __DIR__ . '/../..' . '/app/Core/Database.php',
+        'App\\Core\\DocumentRenderer' => __DIR__ . '/../..' . '/app/Core/DocumentRenderer.php',
         'App\\Core\\Env' => __DIR__ . '/../..' . '/app/Core/Env.php',
         'App\\Core\\Logger' => __DIR__ . '/../..' . '/app/Core/Logger.php',
         'App\\Core\\Model' => __DIR__ . '/../..' . '/app/Core/Model.php',

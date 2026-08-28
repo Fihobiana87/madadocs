@@ -6,11 +6,20 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Controllers\\AiController' => $baseDir . '/app/Controllers/AiController.php',
+    'App\\Controllers\\AuthController' => $baseDir . '/app/Controllers/AuthController.php',
+    'App\\Controllers\\CategoryController' => $baseDir . '/app/Controllers/CategoryController.php',
+    'App\\Controllers\\DashboardController' => $baseDir . '/app/Controllers/DashboardController.php',
+    'App\\Controllers\\DocumentController' => $baseDir . '/app/Controllers/DocumentController.php',
+    'App\\Controllers\\ErrorController' => $baseDir . '/app/Controllers/ErrorController.php',
+    'App\\Controllers\\FavoriteController' => $baseDir . '/app/Controllers/FavoriteController.php',
+    'App\\Controllers\\HomeController' => $baseDir . '/app/Controllers/HomeController.php',
     'App\\Core\\AiClient' => $baseDir . '/app/Core/AiClient.php',
     'App\\Core\\Auth' => $baseDir . '/app/Core/Auth.php',
     'App\\Core\\Controller' => $baseDir . '/app/Core/Controller.php',
     'App\\Core\\Csrf' => $baseDir . '/app/Core/Csrf.php',
     'App\\Core\\Database' => $baseDir . '/app/Core/Database.php',
+    'App\\Core\\DocumentRenderer' => $baseDir . '/app/Core/DocumentRenderer.php',
     'App\\Core\\Env' => $baseDir . '/app/Core/Env.php',
     'App\\Core\\Logger' => $baseDir . '/app/Core/Logger.php',
     'App\\Core\\Model' => $baseDir . '/app/Core/Model.php',

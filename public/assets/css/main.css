@@ -525,6 +525,34 @@ table.data-table th { font-family: var(--font-mono); text-transform: uppercase; 
 .mt-6 { margin-top: var(--sp-6); }
 .flex-between { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); flex-wrap: wrap; }
 
+/* ---------- Contenu du document (aperçu A4, cohérent avec le PDF) ---------- */
+.a4-frame .doc { font-family: Georgia, "Times New Roman", serif; color: #1a1a1a; }
+.a4-frame .doc-letter__from { margin-bottom: 1.4em; }
+.a4-frame .doc-letter__date { text-align: right; margin-bottom: 1.4em; }
+.a4-frame .doc-letter__to { margin-bottom: 1.2em; }
+.a4-frame .doc-letter__subject { font-weight: 700; margin-bottom: 1.2em; }
+.a4-frame .doc-letter__body { text-align: justify; margin-bottom: 2em; }
+.a4-frame .doc-letter__signature { text-align: right; font-weight: 700; }
+.a4-frame .doc-attestation__title { text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.6em; font-size: 1.1em; }
+.a4-frame .doc-attestation__body { text-align: justify; margin-bottom: 2em; }
+.a4-frame .doc-attestation__place { margin-bottom: 0.6em; }
+.a4-frame .doc-attestation__signature { font-weight: 700; }
+.a4-frame .doc-cv__head { border-bottom: 2px solid #1a1a1a; padding-bottom: 0.6em; margin-bottom: 1em; }
+.a4-frame .doc-cv__head h2 { font-family: Georgia, serif; margin-bottom: 0.2em; font-size: 1.3em; }
+.a4-frame .doc-cv__title { font-weight: 700; margin-bottom: 0.2em; }
+.a4-frame .doc-cv section { margin-bottom: 1em; }
+.a4-frame .doc-cv h3 { font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #ccc; margin-bottom: 0.4em; }
+.a4-frame .doc-invoice__head { display: flex; justify-content: space-between; margin-bottom: 1.4em; }
+.a4-frame .doc-invoice__meta { text-align: right; }
+.a4-frame .doc-invoice__client { margin-bottom: 1.4em; }
+.a4-frame table.invoice-items { width: 100%; border-collapse: collapse; font-size: 0.95em; }
+.a4-frame table.invoice-items th, .a4-frame table.invoice-items td { border-bottom: 1px solid #ddd; padding: 0.4em; text-align: left; }
+.a4-frame table.invoice-items td.num, .a4-frame table.invoice-items th.num { text-align: right; }
+.a4-frame .invoice-totals { margin-top: 1em; margin-left: auto; width: 55%; }
+.a4-frame .invoice-totals div { display: flex; justify-content: space-between; padding: 0.25em 0; }
+.a4-frame .invoice-totals .grand-total { font-weight: 700; border-top: 2px solid #1a1a1a; margin-top: 0.3em; padding-top: 0.5em; }
+.a4-frame .ph { color: #b8b0a0; font-style: italic; }
+
 @media print {
     .site-header, .site-footer, .generator__form, .no-print { display: none !important; }
     .a4-frame { box-shadow: none; border: none; width: 100%; max-width: none; }

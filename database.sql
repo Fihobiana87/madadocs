@@ -144,7 +144,19 @@ INSERT INTO documents (category_id, slug, name, description, keywords, pdf_view,
     {"name":"atouts","label":"Vos atouts pour le poste","type":"textarea","required":true}
   ]',
   'Candidature au poste de {{poste}}',
-  'Objet : Candidature au poste de {{poste}}\n\n{{destinataire}},\n\nJe me permets de vous adresser ma candidature pour le poste de {{poste}} au sein de {{entreprise}}.\n\n{{motivation}}\n\n{{atouts}}\n\nJe reste à votre disposition pour un entretien et vous remercie de l’attention portée à ma candidature.\n\nVeuillez agréer, {{destinataire}}, l’expression de mes salutations distinguées.'
+  'Objet : Candidature au poste de {{poste}}
+
+{{destinataire}},
+
+Je me permets de vous adresser ma candidature pour le poste de {{poste}} au sein de {{entreprise}}.
+
+{{motivation}}
+
+{{atouts}}
+
+Je reste à votre disposition pour un entretien et vous remercie de l’attention portée à ma candidature.
+
+Veuillez agréer, {{destinataire}}, l’expression de mes salutations distinguées.'
 ),
 (
   (SELECT id FROM categories WHERE slug = 'emploi'),
@@ -164,7 +176,17 @@ INSERT INTO documents (category_id, slug, name, description, keywords, pdf_view,
     {"name":"profil","label":"Présentation de votre profil","type":"textarea","required":true}
   ]',
   'Demande d’emploi',
-  'Objet : Demande d’emploi\n\n{{destinataire}},\n\nJe me permets de solliciter un emploi au sein de {{entreprise}}, au poste de {{poste}}.\n\n{{profil}}\n\nJe me tiens à votre disposition pour tout complément d’information ou un entretien.\n\nDans l’attente de votre réponse favorable, veuillez agréer, {{destinataire}}, mes salutations respectueuses.'
+  'Objet : Demande d’emploi
+
+{{destinataire}},
+
+Je me permets de solliciter un emploi au sein de {{entreprise}}, au poste de {{poste}}.
+
+{{profil}}
+
+Je me tiens à votre disposition pour tout complément d’information ou un entretien.
+
+Dans l’attente de votre réponse favorable, veuillez agréer, {{destinataire}}, mes salutations respectueuses.'
 );
 
 -- ---------- Stage ----------
@@ -189,7 +211,17 @@ INSERT INTO documents (category_id, slug, name, description, keywords, pdf_view,
     {"name":"motivation","label":"Pourquoi ce stage vous intéresse","type":"textarea","required":true}
   ]',
   'Demande de stage en {{domaine}}',
-  'Objet : Demande de stage en {{domaine}}\n\n{{destinataire}},\n\nActuellement en formation à {{etablissement}}, je souhaite effectuer un stage de {{duree}} au sein de {{entreprise}}.\n\n{{motivation}}\n\nJe reste à votre entière disposition pour échanger sur cette demande.\n\nVeuillez agréer, {{destinataire}}, l’expression de mes salutations distinguées.'
+  'Objet : Demande de stage en {{domaine}}
+
+{{destinataire}},
+
+Actuellement en formation à {{etablissement}}, je souhaite effectuer un stage de {{duree}} au sein de {{entreprise}}.
+
+{{motivation}}
+
+Je reste à votre entière disposition pour échanger sur cette demande.
+
+Veuillez agréer, {{destinataire}}, l’expression de mes salutations distinguées.'
 ),
 (
   (SELECT id FROM categories WHERE slug = 'stage'),
@@ -208,7 +240,17 @@ INSERT INTO documents (category_id, slug, name, description, keywords, pdf_view,
     {"name":"profil","label":"Votre profil et motivations","type":"textarea","required":true}
   ]',
   'Candidature spontanée',
-  'Objet : Candidature spontanée\n\n{{destinataire}},\n\nVivement intéressé(e) par les activités de {{entreprise}} dans le domaine de {{domaine}}, je me permets de vous adresser ma candidature spontanée.\n\n{{profil}}\n\nJe reste disponible pour un entretien à votre convenance.\n\nVeuillez agréer, {{destinataire}}, mes salutations distinguées.'
+  'Objet : Candidature spontanée
+
+{{destinataire}},
+
+Vivement intéressé(e) par les activités de {{entreprise}} dans le domaine de {{domaine}}, je me permets de vous adresser ma candidature spontanée.
+
+{{profil}}
+
+Je reste disponible pour un entretien à votre convenance.
+
+Veuillez agréer, {{destinataire}}, mes salutations distinguées.'
 );
 
 -- ---------- Administratif ----------
@@ -232,7 +274,17 @@ INSERT INTO documents (category_id, slug, name, description, keywords, pdf_view,
     {"name":"motif","label":"Motif","type":"textarea","required":true}
   ]',
   'Demande de permission',
-  'Objet : Demande de permission\n\n{{destinataire}},\n\nJe soussigné(e) {{nom}}, sollicite une autorisation d’absence de {{duree}} le {{date_permission}}.\n\nMotif : {{motif}}\n\nJe vous remercie de l’attention que vous porterez à ma demande et reste disponible pour tout complément d’information.\n\nVeuillez agréer, {{destinataire}}, mes salutations respectueuses.'
+  'Objet : Demande de permission
+
+{{destinataire}},
+
+Je soussigné(e) {{nom}}, sollicite une autorisation d’absence de {{duree}} le {{date_permission}}.
+
+Motif : {{motif}}
+
+Je vous remercie de l’attention que vous porterez à ma demande et reste disponible pour tout complément d’information.
+
+Veuillez agréer, {{destinataire}}, mes salutations respectueuses.'
 ),
 (
   (SELECT id FROM categories WHERE slug = 'administratif'),
@@ -252,7 +304,17 @@ INSERT INTO documents (category_id, slug, name, description, keywords, pdf_view,
     {"name":"motif","label":"Motif (facultatif)","type":"textarea","required":false}
   ]',
   'Demande de congé',
-  'Objet : Demande de congé\n\n{{destinataire}},\n\nOccupant le poste de {{fonction}}, je sollicite un congé du {{date_debut}} au {{date_fin}}.\n\n{{motif}}\n\nJe vous remercie par avance de votre compréhension et reste à votre disposition pour organiser la passation nécessaire.\n\nVeuillez agréer, {{destinataire}}, mes salutations distinguées.'
+  'Objet : Demande de congé
+
+{{destinataire}},
+
+Occupant le poste de {{fonction}}, je sollicite un congé du {{date_debut}} au {{date_fin}}.
+
+{{motif}}
+
+Je vous remercie par avance de votre compréhension et reste à votre disposition pour organiser la passation nécessaire.
+
+Veuillez agréer, {{destinataire}}, mes salutations distinguées.'
 ),
 (
   (SELECT id FROM categories WHERE slug = 'administratif'),
@@ -272,7 +334,17 @@ INSERT INTO documents (category_id, slug, name, description, keywords, pdf_view,
     {"name":"message","label":"Message complémentaire (facultatif)","type":"textarea","required":false}
   ]',
   'Lettre de démission',
-  'Objet : Démission\n\n{{destinataire}},\n\nPar la présente, je vous informe de ma décision de démissionner de mon poste de {{fonction}} au sein de {{entreprise}}, à compter du {{date_depart}}, sous réserve du respect du préavis convenu.\n\n{{message}}\n\nJe vous remercie de la confiance que vous m’avez accordée durant cette collaboration.\n\nVeuillez agréer, {{destinataire}}, l’expression de mes salutations distinguées.'
+  'Objet : Démission
+
+{{destinataire}},
+
+Par la présente, je vous informe de ma décision de démissionner de mon poste de {{fonction}} au sein de {{entreprise}}, à compter du {{date_depart}}, sous réserve du respect du préavis convenu.
+
+{{message}}
+
+Je vous remercie de la confiance que vous m’avez accordée durant cette collaboration.
+
+Veuillez agréer, {{destinataire}}, l’expression de mes salutations distinguées.'
 ),
 (
   (SELECT id FROM categories WHERE slug = 'administratif'),
@@ -290,7 +362,15 @@ INSERT INTO documents (category_id, slug, name, description, keywords, pdf_view,
     {"name":"contenu","label":"Contenu de la demande","type":"textarea","required":true}
   ]',
   '{{objet}}',
-  'Objet : {{objet}}\n\n{{destinataire}},\n\n{{contenu}}\n\nJe vous remercie de l’attention portée à ma demande et reste à votre disposition pour tout complément d’information.\n\nVeuillez agréer, {{destinataire}}, l’expression de mes salutations distinguées.'
+  'Objet : {{objet}}
+
+{{destinataire}},
+
+{{contenu}}
+
+Je vous remercie de l’attention portée à ma demande et reste à votre disposition pour tout complément d’information.
+
+Veuillez agréer, {{destinataire}}, l’expression de mes salutations distinguées.'
 );
 
 -- ---------- Entreprise ----------
@@ -353,5 +433,11 @@ INSERT INTO documents (category_id, slug, name, description, keywords, pdf_view,
     {"name":"date","label":"Date","type":"date","required":true}
   ]',
   '{{objet}}',
-  'Je soussigné(e) {{representant}}, {{fonction_representant}} de {{entreprise}}, atteste que :\n\n{{beneficiaire}}\n\n{{contenu}}\n\nLa présente attestation est délivrée à l’intéressé(e) pour servir et valoir ce que de droit.'
+  'Je soussigné(e) {{representant}}, {{fonction_representant}} de {{entreprise}}, atteste que :
+
+{{beneficiaire}}
+
+{{contenu}}
+
+La présente attestation est délivrée à l’intéressé(e) pour servir et valoir ce que de droit.'
 );
