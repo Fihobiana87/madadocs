@@ -11,6 +11,15 @@
         });
     }
 
+    // --- Confirmation avant soumission (respecte la CSP, pas d'attribut onsubmit) ---
+    document.querySelectorAll('[data-confirm]').forEach((form) => {
+        form.addEventListener('submit', (event) => {
+            if (!window.confirm(form.getAttribute('data-confirm'))) {
+                event.preventDefault();
+            }
+        });
+    });
+
     // --- Fermeture des alertes flash ---
     document.querySelectorAll('[data-dismiss]').forEach((el) => {
         el.addEventListener('click', () => el.closest('.alert')?.remove());
