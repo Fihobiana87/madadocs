@@ -96,7 +96,7 @@ class DocumentController extends Controller
         DocumentTemplate::incrementUsage($template['id']);
 
         flash('success', 'Votre document est prêt.');
-        redirect('/documents/' . $generatedId . '/telecharger');
+        redirect('/documents/' . $generatedId . '/telecharger?t=' . signed_token($generatedId));
     }
 
     public function download(int $id): void
@@ -113,6 +113,13 @@ class DocumentController extends Controller
             $owner = (int) $generated['user_id'] === Auth::id();
             $isAdmin = ($_SESSION['user_role'] ?? '') === 'admin';
             if (!$owner && !$isAdmin) {
+                http_response_code(403);
+                $this->render('errors/403');
+                return;
+            }
+        } else {
+            $token = (string) $this->input('t', '');
+            if (!hash_equals(signed_token($id), $token)) {
                 http_response_code(403);
                 $this->render('errors/403');
                 return;

@@ -5,5 +5,6 @@ return [
     'env' => env('APP_ENV', 'production'),
     'debug' => env('APP_DEBUG', 'false') === 'true',
     'url' => rtrim(env('APP_URL', ''), '/'),
+    'key' => env('APP_KEY', ''),
     'session_lifetime' => (int) env('SESSION_LIFETIME', 7200),
 ];

@@ -69,6 +69,12 @@ function flash(string $key, ?string $message = null): mixed
     return $value;
 }
 
+function signed_token(int|string $value): string
+{
+    $key = config('app.key', '');
+    return substr(hash_hmac('sha256', (string) $value, $key), 0, 32);
+}
+
 function csrf_field(): string
 {
     $token = \App\Core\Csrf::token();
