@@ -1,5 +1,6 @@
 composer.phar
 .env
+storage/*.sqlite
 storage/logs/*.log
 storage/generated/*.pdf
 !storage/logs/.gitkeep
