@@ -1,0 +1,9 @@
+composer.phar
+.env
+storage/logs/*.log
+storage/generated/*.pdf
+!storage/logs/.gitkeep
+!storage/generated/.gitkeep
+.DS_Store
+Thumbs.db
+node_modules/
