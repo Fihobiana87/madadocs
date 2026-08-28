@@ -94,6 +94,8 @@
                 const safe = String(value).replace(/</g, '&lt;');
                 html = html.replaceAll(`{{${key}}}`, safe || `<span class="ph">…</span>`);
             });
+            // Jetons restants (champs non présents dans ce formulaire, ex. adresse facultative)
+            html = html.replace(/\{\{\w+\}\}/g, '');
             preview.innerHTML = html;
         };
 

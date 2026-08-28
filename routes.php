@@ -9,17 +9,22 @@ use App\Controllers\FavoriteController;
 use App\Controllers\AiController;
 use App\Controllers\DashboardController;
 use App\Controllers\AdminController;
+use App\Controllers\InstallController;
 
 $router = new Router();
 
 $router->get('/', [HomeController::class, 'index']);
 $router->get('/mentions-legales', [HomeController::class, 'legal']);
+$router->get('/sitemap.xml', [\App\Controllers\SitemapController::class, 'index']);
 
 $router->get('/inscription', [AuthController::class, 'showRegister']);
 $router->post('/inscription', [AuthController::class, 'register']);
 $router->get('/connexion', [AuthController::class, 'showLogin']);
 $router->post('/connexion', [AuthController::class, 'login']);
 $router->post('/deconnexion', [AuthController::class, 'logout']);
+
+$router->get('/admin/installation', [InstallController::class, 'show']);
+$router->post('/admin/installation', [InstallController::class, 'store']);
 
 $router->get('/modeles', [CategoryController::class, 'index']);
 $router->get('/modeles/{slug}', [DocumentController::class, 'show']);

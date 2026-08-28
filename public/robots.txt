@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /admin
+Disallow: /tableau-de-bord
+Disallow: /connexion
+Disallow: /inscription
+Allow: /
+
+Sitemap: /sitemap.xml

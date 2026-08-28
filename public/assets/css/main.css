@@ -9,7 +9,7 @@
     --paper-raised: #ffffff;
     --ink: #201d1a;
     --ink-soft: #4a453e;
-    --muted: #857c6e;
+    --muted: #6a6053;
     --line: #e6ddcd;
     --line-strong: #d6c9b0;
     --terracotta: #bf4e2b;
@@ -303,6 +303,7 @@ textarea.input { min-height: 110px; resize: vertical; }
 
 .doc-stack {
     position: relative;
+    width: 100%;
     aspect-ratio: 4 / 5;
     max-width: 340px;
     margin-left: auto;

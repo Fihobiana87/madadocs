@@ -15,6 +15,8 @@ return array(
     'App\\Controllers\\ErrorController' => $baseDir . '/app/Controllers/ErrorController.php',
     'App\\Controllers\\FavoriteController' => $baseDir . '/app/Controllers/FavoriteController.php',
     'App\\Controllers\\HomeController' => $baseDir . '/app/Controllers/HomeController.php',
+    'App\\Controllers\\InstallController' => $baseDir . '/app/Controllers/InstallController.php',
+    'App\\Controllers\\SitemapController' => $baseDir . '/app/Controllers/SitemapController.php',
     'App\\Core\\AiClient' => $baseDir . '/app/Core/AiClient.php',
     'App\\Core\\Auth' => $baseDir . '/app/Core/Auth.php',
     'App\\Core\\Controller' => $baseDir . '/app/Core/Controller.php',

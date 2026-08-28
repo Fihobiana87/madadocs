@@ -152,6 +152,8 @@ class ComposerStaticInitac2d307f4ed514763a8119f3523066bb
         'App\\Controllers\\ErrorController' => __DIR__ . '/../..' . '/app/Controllers/ErrorController.php',
         'App\\Controllers\\FavoriteController' => __DIR__ . '/../..' . '/app/Controllers/FavoriteController.php',
         'App\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Controllers/HomeController.php',
+        'App\\Controllers\\InstallController' => __DIR__ . '/../..' . '/app/Controllers/InstallController.php',
+        'App\\Controllers\\SitemapController' => __DIR__ . '/../..' . '/app/Controllers/SitemapController.php',
         'App\\Core\\AiClient' => __DIR__ . '/../..' . '/app/Core/AiClient.php',
         'App\\Core\\Auth' => __DIR__ . '/../..' . '/app/Core/Auth.php',
         'App\\Core\\Controller' => __DIR__ . '/../..' . '/app/Core/Controller.php',
